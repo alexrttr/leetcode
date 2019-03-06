@@ -104,6 +104,7 @@ public:
  */
 
 #include <algorithm>
+#include <cassert>
 #include <iterator>
 #include <iostream>
 
@@ -149,6 +150,7 @@ public:
             else
                 end = middle;
         }
+        assert(false);
     }
     int lengthOfLIS(vector<int>&& nums) {
         int answer = 0;
