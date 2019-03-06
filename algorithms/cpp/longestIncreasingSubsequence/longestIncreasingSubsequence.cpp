@@ -23,9 +23,12 @@
  ***************************************************************************************/
 
 
+#include <vector>
+
+using namespace std;
 
 // O(n^2) - dynamic programming
-class Solution {
+class SolutionDynamic {
 public:
     int lengthOfLIS(vector<int>& nums) {
         
@@ -46,9 +49,9 @@ public:
 };
 
 
-class Solution {
+class SolutionRegular {
 public:
-    
+
 /* 
  * Solution 1 - O(N^2)
  * =========
@@ -82,6 +85,8 @@ public:
         }
         return answer;
     }
+};
+
 /* 
  * Solution 2 - O(N * logN)
  * =========
@@ -97,6 +102,24 @@ public:
  * missing the solution.
  * 
  */
+
+#include <algorithm>
+#include <iterator>
+#include <iostream>
+
+template <typename T>
+std::ostream& operator<< (std::ostream& out, const std::vector<T>& v) {
+  if ( !v.empty() ) {
+    out << '[';
+    std::copy (v.begin(), v.end(), std::ostream_iterator<T>(out, ", "));
+    out << "\b\b]";
+  }
+  return out;
+}
+
+class Solution {
+public:
+
     vector <int> longest_subsequence; // the LIS
     vector <int> nums;
     int binary_search(int number)
@@ -127,7 +150,7 @@ public:
                 end = middle;
         }
     }
-    int lengthOfLIS(vector<int>& nums) {
+    int lengthOfLIS(vector<int>&& nums) {
         int answer = 0;
         if(nums.size())
         {   
@@ -143,6 +166,14 @@ public:
                 answer = max(answer, position + 1);
             }
         }
+        std::cout << "the sequence is " << longest_subsequence << std::endl;
         return answer;
     }
 };
+
+int main()
+{
+    auto sol = Solution();
+    std::cout << "the answer is " << sol.lengthOfLIS({10,9,2,5,3,7,101,18}) << std::endl;
+    return 0;
+}
