@@ -47,3 +47,19 @@ public:
         return cnt;
     }
 };
+
+class Solution {
+public:
+    int numJewelsInStones(string J, string S) {
+       int occurrences = 0;
+       for (char& target : J)
+       {
+           std::string::size_type pos = 0;
+           while ((pos = S.find(target, pos )) != std::string::npos) {
+              ++occurrences;
+              ++pos;
+           }
+       }
+        return occurrences;
+    }
+};
